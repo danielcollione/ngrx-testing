@@ -26,6 +26,12 @@ describe('User Reducer', () => {
     lastName: 'Skywalker'
   };
 
+  const vader: User = {
+    id: 2,
+    firstName: 'Darth',
+    lastName: 'Vader'
+  }
+
   describe('undefined action', () => {
     it('should return the default state', () => {
       const action = { type: 'NOOP' } as any;
@@ -38,6 +44,19 @@ describe('User Reducer', () => {
   describe('[User] Add User', () => {
     it('should toggle loading state', () => {
       const action = new AddUser({ user: anakin });
+      const result = reducer(initialState, action);
+
+      expect(result).toEqual({
+        ...initialState,
+        error: undefined,
+        loading: true
+      });
+    });
+  });
+
+  describe('[User] Add User', () => {
+    it('should toggle loading state', () => {
+      const action = new AddUser({ user: vader });
       const result = reducer(initialState, action);
 
       expect(result).toEqual({
